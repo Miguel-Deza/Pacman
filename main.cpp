@@ -66,12 +66,7 @@ float lightIntensity = 1;
 
 void init()
 {   
-	// ustaw intensywnosc swaitla i kolor
-	// https://www.youtube.com/watch?v=g_0yV7jZvGg
-	// https://www.youtube.com/watch?v=gFZqzVQrw84 // swietny opis rodzajow swiatel
-	// https://www.youtube.com/watch?v=oVwH8KV1xnY // najlepsze
-
-	// General OpenGL configirations:
+	// General OpenGL configurations:
 	glEnable(GL_DEPTH_TEST); // intialization of 3D rendering
 	glEnable(GL_COLOR_MATERIAL); // object material properties enabled
 	glColorMaterial(GL_FRONT, GL_AMBIENT_AND_DIFFUSE); // set material properties which will be assigned by glColor
@@ -156,7 +151,7 @@ void DrawInfo()
 	glEnable(GL_TEXTURE_2D);
 }
 
-// renderowanie grafiki
+// renderizar gráficos
 void display()
 {
 	//std::cout << "render" << std::endl;
@@ -168,13 +163,13 @@ void display()
 	//glOrtho(-orthoOffset, GameBoard::DIM_X + orthoOffset, -orthoOffset, GameBoard::DIM_Y + orthoOffset, 0.1, 10 );
 	//gluOrtho2D(-orthoOffset, GameBoard::DIM_X + orthoOffset, -orthoOffset, GameBoard::DIM_Y + orthoOffset );
 	//glFrustum(-10.25, 10.25, -10.25, 10.25, 1, 1.3);
-	gluPerspective( 90, 1, 5, 30.0 ); // 4. parametr - ile widzimy
+	gluPerspective( 90, 1, 5, 30.0 ); // 4th parameter - how much we see
 
 	glMatrixMode( GL_MODELVIEW );
     glLoadIdentity();
 
 	glClearColor( 0.0f, 0.0f, 0.0f, 1.0f );
-	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT ); // czysc bufory
+	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT ); // clear buffers
 
 	// lighting stuff:
 	glPushMatrix();
@@ -184,8 +179,8 @@ void display()
 
 	// camera movement stuff:
 	// http://gamedev.stackexchange.com/questions/43588/how-to-rotate-camera-centered-around-the-cameras-position
-	// M_PI /2 - przesuniecie fazowe w celu dobrego wyswietlenia poczatkowego planszy
-	// implementacja operacji: ROLL (theta) (zla!) oraz PITCH (phi) ('w', 's' jest ok)
+	// M PI /2 - phase shift for good display of the initial board
+	// operation implementation: ROLL (theta) (bad!) and PITCH (phi) ('w', 's' is ok)
 	if (pacFollowed) 
 	{ // look at pacman 
 		centerX = pacman->x;
@@ -274,7 +269,7 @@ void display()
 	// screen information
 	DrawInfo();
 
-    glFlush(); // wyczysc wszystkie bufory. Standard zaleca wywolywanie tej komendy.
+    glFlush(); // clear all buffers. The standard recommends invoking this command.
 	glutSwapBuffers();
 }
 
@@ -287,7 +282,7 @@ void reshape(GLsizei w, GLsizei h)
 	        
 	GLdouble aspect = w /( GLdouble ) h;
    
-    // rzutowanie perspektywiczne
+    // perspective projection
 	gluPerspective( 90, 1, 5, 30.0 );
 }
 
@@ -395,7 +390,7 @@ void special( int key, int x, int y )
         break;
     }
 
-	// odrysowanie okna
+	// redraw the window
     reshape( glutGet( GLUT_WINDOW_WIDTH ), glutGet( GLUT_WINDOW_HEIGHT ) );
 }
 
@@ -407,10 +402,10 @@ void timer(int v)
 int main(int argc, char** argv)
 {
 	glutInit( &argc, argv );
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH); // pojedyncze buforowanie oraz bufor glebokosci ustawiamy
+	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_DEPTH); // set single buffering and depth buffer
 	glutInitWindowPosition( 100, 10 );
 	glutInitWindowSize( 1000, 1000 );
-	glutCreateWindow( "PackMan" ); // zainicjowany kontekst openGL'owy
+	glutCreateWindow( "PackMan" ); // initialized open GL context
 
 	//glutGameModeString( "800x600:16@60" );
 	//glutEnterGameMode();
@@ -418,8 +413,8 @@ int main(int argc, char** argv)
 	glutSetCursor(GLUT_CURSOR_NONE);
 
 	glutDisplayFunc( display );
-	glutReshapeFunc( reshape ); // trzeba zmienic parametry rzutowania
-	glutIdleFunc(display); // scena jest caly czas przeliczana w tle
+	glutReshapeFunc( reshape ); // casting parameters need to be changed
+	glutIdleFunc(display); // The scene is constantly recalculated in the background
 
 	glutTimerFunc(40, timer, 1);
 
@@ -452,7 +447,7 @@ int main(int argc, char** argv)
 
 	init();
 
-	glutMainLoop(); // w momencie wywolania nasz program zaczyna dzialac. Reaguje od tego momentu na zdarzenia.
+	glutMainLoop(); //when called, our program starts running. It reacts to events from then on.
 
 	return 0;
 }

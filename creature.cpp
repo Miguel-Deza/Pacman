@@ -43,7 +43,7 @@ void Creature::Move()
 {
 	if (moving) 
 	{
-		x += speed*cos(M_PI/180*angle); // dodawany jakis staly interwal
+		x += speed*cos(M_PI/180*angle); // some fixed interval added
 		y += speed*sin(M_PI/180*angle);
 
 		if (!atCenter && isCenterTile())
@@ -58,9 +58,9 @@ void Creature::Move()
 
 	calcCurrentTile();
 
-	if (tileX != oldTileX || tileY != oldTileY) // kiedy wszedlem na nowa plytke
+	if (tileX != oldTileX || tileY != oldTileY) // when i put on a new board
 	{
-		atCenter = false;  // wtedy moge szukac centrum nowej plytki
+		atCenter = false;  // then we can look for the center of the new plate
 		onTileChange(); 
 	}
 }

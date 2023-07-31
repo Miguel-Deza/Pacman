@@ -6,7 +6,7 @@
 
 using namespace std;
 
-// Zmienne do kontroli animacji monet:
+// Variables to control coin animation:
 int coinAngle = 0;
 
 // 0 - coin
@@ -36,6 +36,27 @@ int GameBoard::initial_map[GameBoard::DIM_Y][GameBoard::DIM_X] =
 	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}, // 14
 };
 
+//int GameBoard::initial_map[GameBoard::DIM_Y][GameBoard::DIM_X] =
+//{  //0                   1         5         2                 29
+//	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}, // 0
+//	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1}, // 1
+//	{1,0,1,1,1,1,1,1,1,1,1,1,0,1,0,1,1,1,0,1,0,1,1,1,0,1,0,1,0,1}, // 2
+//	{1,3,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,3,1},
+//	{1,0,1,0,1,1,1,0,1,1,1,1,0,0,0,0,0,1,0,1,1,1,0,0,0,1,0,1,0,1}, // 4
+//
+//	{1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,0,1,1,0,0,1,0,1,0,1,0,1}, // 5
+//	{1,0,1,1,1,1,1,1,1,1,1,1,0,1,0,0,0,0,0,0,1,0,1,1,0,1,0,1,0,1},
+//	{1,0,0,0,0,0,0,0,0,0,1,1,0,1,0,1,1,1,1,0,0,0,0,0,0,0,0,0,0,1},
+//	{1,0,1,1,1,0,1,1,1,0,1,1,0,1,0,0,0,0,0,0,1,0,1,1,0,1,1,1,1,1},
+//	{1,0,0,0,1,0,0,0,1,0,0,0,0,0,0,1,1,0,1,0,1,0,0,0,0,0,0,0,0,1},
+//
+//	{1,1,1,0,1,1,1,0,1,0,1,1,1,1,0,0,0,0,1,0,1,1,0,1,1,1,0,1,0,1}, // 10
+//	{1,3,0,0,0,0,0,0,0,0,0,0,0,1,0,1,1,0,0,0,0,0,0,0,0,0,0,1,3,1},
+//	{1,0,1,1,1,1,1,0,1,1,1,1,0,1,0,0,0,0,1,1,1,1,1,0,1,1,1,1,0,1}, // 12
+//	{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1}, // 13
+//	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}, // 14
+//};
+
 
 void GameBoard::TextureLoad(int id)
 {
@@ -48,8 +69,8 @@ void GameBoard::TextureLoad(int id)
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST); // wiecej pikseli, jak jestesmy blizej obiektu
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); // mniej pikseli im dalej
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST); // more pixels the closer we are to the object
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); // fewer pixels the farther away
 
 	// glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
@@ -63,8 +84,8 @@ void GameBoard::DrawWall(int x, int y, int z)
 {
 	glEnable(GL_TEXTURE_2D);
 
-	// ustawienia funkcji teksturu
-	// co one powoduja? ? GL_REPLACE ? GL _MODULATE
+	// texture function settings
+	// what do they cause? ? GL REPLACE ? GL MODULATE
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
 	glEnableClientState(GL_COLOR_ARRAY);
@@ -90,10 +111,10 @@ void GameBoard::DrawWall(int x, int y, int z)
 	glDisable(GL_TEXTURE_2D);
 }
 
-// Koniec muru.
+// End of wall.
 void DrawWallEnd(int x, int y, int z, int angle)
 {
-	// Okreslenie wspolnej tesktury.
+	// Determine the common texture.
 	glEnable(GL_TEXTURE_2D);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -154,7 +175,7 @@ GameBoard::GameBoard()
 				coinsCount++;
 		}
 	}
-	// zaladuj teksture.
+	// freeze textures.
 	TextureLoad(ID_2);
 }
 
