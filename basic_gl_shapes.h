@@ -4,7 +4,7 @@
 #include "glut.h"
 
 // vertices arrays:
-// Szescian:
+// cube:
 
 namespace
 {
@@ -92,7 +92,7 @@ GLfloat textures[] = {  0.0,0.0, 1.0,0.0, 1.0,1.0, 0.0, 1.0,
 						0.0,0.0, 1.0,0.0, 1.0,1.0, 0.0, 1.0
 					 };
 
-// Wspolne wspolrzedne tekstury dla zbudowanej figury dla konca muru.
+// Common texture coordinates for the built figure for the end of the wall.
 GLfloat textures2[] = { 0.0,0.0, 0.5,0.0, 1.0,0.25, 1.0,0.75, 0.5,1.0, 0.0,1.0,
 						0.0,0.0, 1.0,0.0, 1.0,1.0, 0.0, 1.0,
 						0.0,0.0, 1.0,0.0, 1.0,1.0, 0.0, 1.0,
@@ -101,7 +101,7 @@ GLfloat textures2[] = { 0.0,0.0, 0.5,0.0, 1.0,0.25, 1.0,0.75, 0.5,1.0, 0.0,1.0,
 						0.0,0.0, 1.0,0.0, 1.0,1.0, 0.0, 1.0
 					 };
 
-// Graniastos³up o podstawie trójk¹ta.
+// A prism with a triangular base.
 void Triang()
 {
 	glVertexPointer(3,GL_FLOAT,0,vertices2);
@@ -111,8 +111,7 @@ void Triang()
 		glDrawElements(GL_TRIANGLES, 18, GL_UNSIGNED_BYTE, indices2);
 	glPopMatrix();
 }
-
-// Drugi graniastos³up o podstawie trójk¹ta.
+// The second triangular prism.
 void Triang2()
 {
 	glVertexPointer(3,GL_FLOAT,0,vertices3);
@@ -123,7 +122,7 @@ void Triang2()
 	glPopMatrix();
 }
 
-// Szescian o szerokosci 2.
+// A cube with a width of 2.
 void Block()
 {
 	glVertexPointer(3,GL_FLOAT,0,vertices);

@@ -6,7 +6,7 @@ class Creature
 private:
 
 	void calcCurrentTile(); // calculate current tile
-	bool atCenter; // synchronizing boolean. Invoke onTileCenter only once!
+	bool atCenter; // synchronizing boolean. Invoke on Tile Center only once!
 	bool isCenterTile();
 
 public:
@@ -14,7 +14,7 @@ public:
 	virtual ~Creature() {};
 	Creature(int x, int y, float z);
 
-	float x, y, z;  // wspolrzedne do poruszania sie po planszy
+	float x, y, z;  //coordinates for moving around the board
 	int tileX;
 	int tileY;
 
